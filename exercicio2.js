@@ -11,13 +11,20 @@ const servidorDasImagens = 'https://fegemo.github.io/cefet-web/images/',
   ];
 
 let i = 0;
-
-let botaoAnteriorEl = document.querySelectorAll('#anterior');
+let img = document.querySelector('#slide'); 
+let botaoAnteriorEl = document.querySelector('#anterior');
+let botaoProximoEl = document.querySelector('#proximo');
 
 botaoAnteriorEl.addEventListener('click', function (){
-	i++;
-	let img = botaoAnteriorEl.previousSibling;
+	i--;
+  if (i < 0)
+    i = todasAsImagens.length-1;
 	img.src = servidorDasImagens + todasAsImagens[i];
 });
 
-let botaoProximoEl = document.querySelectorAll('#proximo');
+botaoProximoEl.addEventListener('click', function (){
+  i++;
+  if (i == todasAsImagens.length)
+    i = 0;
+  img.src = servidorDasImagens + todasAsImagens[i];
+});
